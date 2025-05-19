@@ -1,0 +1,16 @@
+ACCELEROMETER_COLUMNS:
+  time: float
+  seconds_elapsed: float
+  z: float
+  y: float
+  x: float
+
+GYROSCOPE_COLUMNS:
+  time: float
+  seconds_elapsed: float
+  z: float
+  y: float
+  x: float
+
+TARGET_COLUMN:
+  name: label

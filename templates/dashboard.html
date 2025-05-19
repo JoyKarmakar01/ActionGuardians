@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Dashboard | Activity Recognition</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>Welcome, {{ username }}! 👋</h2>
+    <a class="btn btn-outline-danger" href="{{ url_for('logout') }}">Logout</a>
+  </div>
+  <div class="card mt-4 p-4 shadow-sm">
+    <h4 class="mb-3 text-success">🤖 About Activity Recognition Model</h4>
+    <ul>
+      <li>This ML model predicts <b>human activity</b> (walking, running, sitting, etc.) from sensor data.</li>
+      <li><b>What you need:</b> Two CSV files - <mark>Accelerometer</mark> & <mark>Gyroscope</mark> sensor data.</li>
+      <li><b>How it works:</b> You upload your CSVs, the model predicts and summarizes time spent on each activity.</li>
+      <li>Supports activities: Walking, Running, Sitting, Standing, Upstairs, Downstairs.</li>
+    </ul>
+    <ol class="mt-3">
+      <li>Click <b>Checkout a Prediction</b></li>
+      <li>Upload your sensor data (.csv)</li>
+      <li>Get your activity summary & charts instantly!</li>
+    </ol>
+    <div class="text-center mt-4">
+      <a href="{{ url_for('predict') }}" class="btn btn-lg btn-success px-4 py-2">
+        🚀 Checkout a Prediction
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

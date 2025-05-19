@@ -1,0 +1,46 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://github.com/JoyKarmakar01/actionguardian-datasets/raw/main/Sensor_Data.zip
+  local_data_file: artifacts/data_ingestion/Sensor_Data.zip
+  unzip_dir: artifacts/data_ingestion/Sensor_Data
+
+data_validation:
+  root_dir: artifacts/data_validation
+  unzip_data_dir: artifacts/data_ingestion/Sensor_Data
+  STATUS_FILE: artifacts/data_validation/status.txt
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  base_data_dir: artifacts/data_ingestion/Sensor_Data/Sensor_Data
+  output_data_dir: artifacts/data_transformation/final_data
+
+data_preprocessing:
+  root_dir: artifacts/data_preprocessing
+  data_path: artifacts/data_transformation/final_data/data.csv
+  window_size: 250       # 250 samples per window (5s @50Hz)
+  step_size: 125         # 50% overlap
+  sampling_rate: 50      # sensor sampling rate in Hz
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  scaler_filename: scaler.pkl
+  label_encoder_filename: label_encoder.pkl
+  model_filename: activity_model.pkl
+  metrics_filename: metrics.json
+  test_size: 0.2
+  random_state: 42
+  n_estimators: 100
+  features_path: artifacts/data_preprocessing/X_windows.npy
+  labels_path: artifacts/data_preprocessing/y_labels.npy
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  test_features_path: artifacts/model_trainer/X_test.npy
+  test_labels_path: artifacts/model_trainer/y_test.npy
+  model_path: artifacts/model_trainer/activity_model.pkl
+  params_section: RandomForestClassifier
+  metric_file_name: artifacts/model_evaluation/metrics.json
+  # mlflow_uri: ${MLFLOW_TRACKING_URI}
+  mlflow_uri: https://dagshub.com/krjoy01/ActionGuardian.mlflow

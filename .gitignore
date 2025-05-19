@@ -1,0 +1,14 @@
+vienv/
+*.env
+*.local
+notebooks/
+logs/
+__pycache__/
+prompt/
+*.pyc
+artifacts/
+Sensor_Data/
+secret.txt
+setx
+${MLFLOW_TRACKING_URI}/
+!artifacts/**/*.dvc
